@@ -1,0 +1,3 @@
+<?php
+ $filename = 'guestbook.txt';
+?>
