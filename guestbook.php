@@ -1,5 +1,5 @@
 <?php 
-require 'file.php';
+require 'database.php';
 require 'add_entry.php';
 require 'get_entries.php';
 ?>
@@ -38,3 +38,7 @@ require 'get_entries.php';
 </BODY>
 </HTML>
 
+<?
+// Close MySQL Connection
+mysql_close($connection);
+?>

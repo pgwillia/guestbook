@@ -3,3 +3,10 @@ Simple PHP guestbook application.
 Requires:
  * php
  * httpd
+ * mysql-server
+ * php-mysql
+
+Setup:
+ * service mysqld start
+ * mysql < schema.sql
+ * service httpd start 

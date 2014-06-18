@@ -1,28 +1,23 @@
 <?php
+$guestbook = "";
 $title = "Sign the Guestbook";
 
-$file = fopen($filename, 'a') or die('unable to open file');
 if (!empty( $_POST["submit"])) {
   $name = $_POST["formName"];
   $email = $_POST["formEmail"];
   $comment = $_POST["formComment"];
   $date = Date("Y-m-d h:i:s");
 
-  if(!empty($name)) {
-    if(!empty($email)) {
-      $name = "<a href=\"mailto:$email\">$name</a>";
-    }
-  } elseif (!empty($email)) {
-    $name = "<a href=\"mailto:$email\">$email</a>";
+  $sql = "insert into guestbook values(0, '$name', '$email', '$comment', '$date')";
+  mysql_query($sql);
+  $response = mysql_affected_rows();
+
+  if($response > 0) {
+    $return = "Your guestbook entry was successfully added.";
   } else {
-    $name = "";
-  }
+    $return = "Something went wrong.  Your guestbook entry was not added.";
+  } 
 
-  $entry = "<p class=\"greeting\">$comment - posted on $date by $name</p>\n";
-  fwrite($file, $entry);
-
+  $guestbook .= "<span class=\"return\">$return</span><br />";
 }
-
-fclose($file);
-
 ?>
